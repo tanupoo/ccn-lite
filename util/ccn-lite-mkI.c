@@ -47,13 +47,16 @@ main(int argc, char *argv[])
 
     time((time_t*) &nonce);
 
-    while ((opt = getopt(argc, argv, "ha:c:d:i:ln:o:p:s:x:")) != -1) {
+    while ((opt = getopt(argc, argv, "ha:c:d:e:i:ln:o:p:s:x:")) != -1) {
         switch (opt) {
         case 'a':
             minSuffix = optarg;
             break;
         case 'c':
             scope = optarg;
+            break;
+        case 'e':
+            nonce = atoi(optarg);
             break;
         case 'd':
             digest = optarg;
@@ -96,6 +99,7 @@ Usage:
             fprintf(stderr, "usage: %s [options] URI [NFNexpr]\n"
             "  -a LEN     miN additional components\n"
             "  -c SCOPE\n"
+            "  -e NONCE   random 4 bytes\n"
             "  -d DIGEST  content digest (sets -x to 0)\n"
             "  -l         URI is a Lambda expression\n"
             "  -n CHUNKNUM positive integer for chunk interest\n"
@@ -139,7 +143,7 @@ Usage:
 	break;
     case CCNL_SUITE_NDNTLV:
         len = ndntlv_mkInterest(prefix, 
-                                (int*)&nonce,
+                                (int*)&nonce, 
                                 out,
                                 CCNL_MAX_PACKET_SIZE);
         break;
