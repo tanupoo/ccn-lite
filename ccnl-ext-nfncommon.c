@@ -209,7 +209,9 @@ ccnl_nfn_freeMachineState(struct fox_machine_state_s* f)
 {
     if (!f)
         return;
-    ccnl_free(f->thunk);
+    
+    if(f->thunk) 
+        ccnl_free(f->thunk);
     while (f->prefix_mapping) {
         struct prefix_mapping_s *m = f->prefix_mapping;
         DBL_LINKED_LIST_REMOVE(f->prefix_mapping, m);

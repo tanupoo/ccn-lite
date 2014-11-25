@@ -249,7 +249,7 @@ restart:
         --ccnl->km->numOfRunningComputations;
 
         DBL_LINKED_LIST_REMOVE(ccnl->km->configuration_list, config);
-        ccnl_nfn_freeConfiguration(config);
+        // ccnl_nfn_freeConfiguration(config);
         ccnl_free(res);
     }
 #ifdef USE_NACK
