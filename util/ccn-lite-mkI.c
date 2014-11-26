@@ -143,7 +143,7 @@ Usage:
 	break;
     case CCNL_SUITE_NDNTLV:
         len = ndntlv_mkInterest(prefix, 
-                                (int*)&nonce, 
+                                NULL, // disable nonce for NDNTLV (int*)&nonce, 
                                 out,
                                 CCNL_MAX_PACKET_SIZE);
         break;
