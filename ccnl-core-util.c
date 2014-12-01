@@ -517,7 +517,19 @@ One possibility is to not have a '/' before any nfn expression.
 #endif
 
     for (i = 0; i < pr->compcnt; i++) {
-        len += sprintf(buf + len, "/");
+#ifdef USE_NFN
+        if(strncmp("call", (char*)pr->comp[i], 4))
+        {
+#endif
+            len += sprintf(buf + len, "/");
+#ifdef USE_NFN
+        }else{
+            len += sprintf(buf + len, " ");
+        }
+
+#endif
+
+
         for (j = skip; j < pr->complen[i]; j++) {
             char c = pr->comp[i][j];
             if (c < 0x20 || c == 0x7f)
