@@ -136,7 +136,7 @@ all: ${PROGS}
 
 lib-ccn-lite: ccn-lite-riot.c \
 	${SUITE_LIBS} ${CCNL_CORE_LIB}
-	${CC} -o $@ ${CCNLCFLAGS} -c $<
+	${CC} -o $@ ${RIOT_CFLAGS} ${CCNLCFLAGS} -c $<
 
 ccn-lite-minimalrelay: ccn-lite-minimalrelay.c \
 	${SUITE_LIBS} ${CCNL_CORE_LIB}
