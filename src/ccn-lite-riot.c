@@ -227,7 +227,7 @@ ccnl_rem_timer(void *h)
 }
 
 double
-CCNL_NOW()
+CCNL_NOW(void)
 {
     struct timeval tv;
     static time_t start;
@@ -245,7 +245,7 @@ CCNL_NOW()
 }
 
 struct timeval*
-ccnl_run_events()
+ccnl_run_events(void)
 {
     static struct timeval now;
     long usec;
@@ -283,7 +283,7 @@ ccnl_open_udpdev(int port)
     int s;
     struct sockaddr_in si;
 
-    s = socket(PF_INET, SOCK_DGRAM, 0);
+    s = socket(AF_INET6, SOCK_DGRAM, 0);
     if (s < 0) {
         perror("udp socket");
         return -1;
@@ -291,7 +291,7 @@ ccnl_open_udpdev(int port)
 
     si.sin_addr.s_addr = INADDR_ANY;
     si.sin_port = htons(port);
-    si.sin_family = PF_INET;
+    si.sin_family = AF_INET6;
     if (bind(s, (struct sockaddr *)&si, sizeof(si)) < 0) {
         perror("udp sock bind");
         return -1;
@@ -349,7 +349,7 @@ ccnl_io_loop(struct ccnl_relay_s *ccnl)
                 int len;
                 if ((len = recvfrom(ccnl->ifs[i].sock, buf, sizeof(buf), 0,
                                 (struct sockaddr*) &src_addr, &addrlen)) > 0)
-                    ccnl_core_RX(ccnl, i, buf, len, &src_addr.sa, sizeof(src_addr.ip4));
+                    ccnl_core_RX(ccnl, i, buf, len, &src_addr.sa, sizeof(src_addr.ip6));
             }
             if (FD_ISSET(ccnl->ifs[i].sock, &writefs))
                 ccnl_interface_CTS(&theRelay, &theRelay.ifs[0]);
