@@ -576,6 +576,7 @@ ccnl_interest_isSame(struct ccnl_interest_s *i, struct ccnl_pkt_s *pkt)
 struct ccnl_content_s*
 ccnl_content_new(struct ccnl_relay_s *ccnl, struct ccnl_pkt_s **pkt)
 {
+    (void) ccnl;
     struct ccnl_content_s *c;
 
     DEBUGMSG_CORE(TRACE, "ccnl_content_new %p <%s [%d]>\n",
@@ -757,6 +758,7 @@ ccnl_content_serve_pending(struct ccnl_relay_s *ccnl, struct ccnl_content_s *c)
 void
 ccnl_do_ageing(void *ptr, void *dummy)
 {
+    (void) dummy;
     struct ccnl_relay_s *relay = (struct ccnl_relay_s*) ptr;
     struct ccnl_content_s *c = relay->contents;
     struct ccnl_interest_s *i = relay->pit;
