@@ -134,7 +134,7 @@ OMNET_DEPS = ccnl-core.c ccnl-core-fwd.c ccnl-core.h ccnl-core-util.c ccnl-defs.
 all: ${PROGS}
 	+make -C util
 
-lib-ccn-lite: ccn-lite-riot.c \
+lib-ccn-lite.a: ccn-lite-riot.c \
 	${SUITE_LIBS} ${CCNL_CORE_LIB}
 	${CC} -o $@ ${RIOT_CFLAGS} ${CCNLCFLAGS} -c $<
 
