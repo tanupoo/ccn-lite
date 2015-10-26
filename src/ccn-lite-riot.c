@@ -58,7 +58,7 @@
 
 #define FATAL   LOG_ERROR
 #define ERROR   LOG_ERROR
-#define WARNING LOG_WARNINGG
+#define WARNING LOG_WARNING
 #define INFO    LOG_INFO
 #define DEBUG   LOG_DEBUG
 #define TRACE   LOG_DEBUG
