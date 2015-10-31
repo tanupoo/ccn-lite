@@ -1071,6 +1071,7 @@ main(int argc, char *argv[])
             break;
         case 'u':
             udp = strdup(optarg);
+	    udp = strtok(udp, "/");
             port = strtol(strtok(udp, "/"), NULL, 0);
             use_udp = 1;
 printf("udp: <%s> <%d>\n", udp, port);
